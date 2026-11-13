@@ -10,7 +10,8 @@
         <div class="form">
             <p id="mensagem">Digite o nome de um Pokemon</p>
             <form>
-                <input type="text" id="pokemon" placeholder="Digite o nome do seu Pokemon">
+                <label for="pokemon">Nome do Pokémon</label>
+                <input type="search" id="pokemon" placeholder="Digite o nome do seu Pokemon">
                 <button type="submit" id="buscar" placeholder="Buscar">Buscar</button>
                 <button type="submit" id="limpar" onclick="limpar()">Limpar</button>
             </form>
@@ -22,7 +23,7 @@
                 <p id="altura"></p>
                 <p id="peso"></p>
                 <p id="habilidades"></p>
-                <img id="imagem" class = "imagem" src="arte">
+                <img id="imagem" class = "imagem" src="arte" alt="sprite do " + { nome }>
             </ul>
         </div>
     </body>
@@ -63,6 +64,7 @@
             const arte = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default
             const imagem = document.getElementById("imagem")
             imagem.src = arte
+            imagem.alt = "Imagem do Pokémon " + pokemon.name
             document.getElementById("nome").textContent = "Nome: " + pokemon.name
             document.getElementById("ID").textContent = "ID: " + pokemon.id
             document.getElementById("altura").textContent = "Altura: " + pokemon.height + " m"
@@ -79,6 +81,7 @@
             document.getElementById("mensagem").textContent = "" 
             document.getElementById("peso").textContent = ""
             document.getElementById("habilidades").textContent = ""
+            document.getElementById("imagem").alt = "Imagem do Pokémon"
         }
     </script>
 </html>
