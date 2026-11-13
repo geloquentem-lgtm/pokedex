@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="index.css">
+        <title>Pokedex</title>
+    </head>
+    <body>
+        <h1> Pokedex </h1>
+        <div class="form">
+            <p id="mensagem">Digite o nome de um Pokemon</p>
+            <form>
+                <input type="text" id="pokemon" placeholder="Digite o nome do seu Pokemon">
+                <button type="submit" id="buscar" placeholder="Buscar">Buscar</button>
+                <button type="submit" id="limpar" onclick="limpar()">Limpar</button>
+            </form>
+        </div>
+        <div class="Pokemon">
+            <ul>
+                <p id="nome"></p>
+                <p id="ID"></p>
+                <p id="altura"></p>
+                <p id="peso"></p>
+                <p id="habilidades"></p>
+                <img id="imagem" class = "imagem" src="arte">
+            </ul>
+        </div>
+    </body>
+    <script>
+        const nome = document.getElementById("pokemon")
+        const buscar = document.getElementById("buscar")
+
+        buscar.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            const nomePokemon = nome.value.trim().toLowerCase()
+
+            if (!nomePokemon) {
+                alert("Digite o nome de um Pokémon")
+                return 
+            }
+
+            fetch("https://pokeapi.co/api/v2/pokemon/" + nomePokemon)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Pokémon não encontrado")
+                    }
+                    return response.json()
+                })
+                .then(data => busca(data))
+                .catch(error => {
+                    document.getElementById("mensagem").textContent = error.message
+                    document.getElementById("nome").textContent = ""
+                    document.getElementById("ID").textContent = ""
+                    document.getElementById("altura").textContent = ""
+                    document.getElementById("peso").textContent = ""
+                    document.getElementById("habilidades").textContent = ""
+                })
+        })
+
+        function busca(pokemon) {
+            const habilidades = pokemon.abilities.map(item => item.ability.name)
+            const arte = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default
+            const imagem = document.getElementById("imagem")
+            imagem.src = arte
+            document.getElementById("nome").textContent = "Nome: " + pokemon.name
+            document.getElementById("ID").textContent = "ID: " + pokemon.id
+            document.getElementById("altura").textContent = "Altura: " + pokemon.height + " m"
+            document.getElementById("peso").textContent = "Peso: " + pokemon.weight + " kg"
+            document.getElementById("mensagem").textContent = "Pokemon encontrado com sucesso!"
+            document.getElementById("habilidades").textContent = "Habilidades: " + habilidades.join(", ")
+            document.getElementById("pokemon").value = ""
+        }
+
+        function limpar() {
+            document.getElementById("nome").textContent = ""
+            document.getElementById("ID").textContent = ""
+            document.getElementById("altura").textContent = ""
+            document.getElementById("mensagem").textContent = "" 
+            document.getElementById("peso").textContent = ""
+            document.getElementById("habilidades").textContent = ""
+        }
+    </script>
+</html>
