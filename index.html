@@ -23,7 +23,7 @@
                 <p id="altura"></p>
                 <p id="peso"></p>
                 <p id="habilidades"></p>
-                <img id="imagem" class = "imagem" src="arte" alt="sprite do " + { nome }>
+                <img id="imagem" class = "imagem" src="arte" alt="">
             </ul>
         </div>
     </body>
@@ -64,7 +64,8 @@
             const arte = pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default
             const imagem = document.getElementById("imagem")
             imagem.src = arte
-            imagem.alt = "Imagem do Pokémon " + pokemon.name
+            imagem.alt = "Imagem do " + pokemon.name
+            imagem.hidden = !imagem
             document.getElementById("nome").textContent = "Nome: " + pokemon.name
             document.getElementById("ID").textContent = "ID: " + pokemon.id
             document.getElementById("altura").textContent = "Altura: " + pokemon.height + " m"
