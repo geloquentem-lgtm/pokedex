@@ -19,23 +19,38 @@ body {
 
 h1 {
     text-align: center;
-    first-letter {
-        text-transform: uppercase;
-        color: red
-    }
     font-size: 4rem;
     font-weight: bold;
     font-style: italic;
     background: linear-gradient(90deg, red, white);
 }
-
-.form {
-    input {
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border-color: var(--accent);
+    background-color: rgba(31, 10, 106, 0.15);
+    .pokemon {
         width: 100%;
-        padding: 0.5rem;
+        max-width: 400px;
+        padding: 1rem;
         box-sizing: border-box;
         border-radius: 0.5rem;
         border: 1px solid black;
+        background-color: var(--surface);
+        font-size: 1.5rem;
+    }
+}
+.form {
+    input {
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        border: 1px solid black;
+        margin: 0.5rem 0;
         transition: border-color 0.3 ease, box-shadow 0.3 ease;
     }
     input:focus{
@@ -44,12 +59,44 @@ h1 {
         outline: none;
     }
     input::placeholder {
+        font-style: italic;
+        font-size: 1.3rem;
         color: lightslategray;
     }
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    button {
+        width: 100%;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        margin: 0.1rem 0;
+        border: 1px solid black;
+        font-size: 1.25rem;
+        background-color: var(--accent);
+        color: var(--text);   
+        cursor: pointer;
+    }
 }
+
+ul {
+    padding: 0;
+    margin: 0;
+    background-color: #f5aea2;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 100px var(--accent);
+    p {
+        margin: 2rem;
+        font-size: 1.5rem;
+        font-style: oblique;
+        background: #fefefe;
+        color: rgb(47, 42, 42);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+}
+.nome {
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 

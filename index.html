@@ -17,8 +17,8 @@
             </form>
         </div>
         <div class="Pokemon">
-            <ul>
-                <p id="nome"></p>
+            <ul class="pokemon-list">
+                <p id="nome" class="nome"></p>
                 <p id="ID"></p>
                 <p id="altura"></p>
                 <p id="peso"></p>
@@ -56,6 +56,9 @@
                     document.getElementById("altura").textContent = ""
                     document.getElementById("peso").textContent = ""
                     document.getElementById("habilidades").textContent = ""
+                    document.getElementById("imagem").src = ""
+                    document.getElementById("imagem").alt = ""
+                    
                 })
         })
 
@@ -66,7 +69,7 @@
             imagem.src = arte
             imagem.alt = "Imagem do " + pokemon.name
             imagem.hidden = !imagem
-            document.getElementById("nome").textContent = "Nome: " + pokemon.name
+            document.getElementById("nome").textContent = pokemon.name
             document.getElementById("ID").textContent = "ID: " + pokemon.id
             document.getElementById("altura").textContent = "Altura: " + pokemon.height + " m"
             document.getElementById("peso").textContent = "Peso: " + pokemon.weight + " kg"
@@ -83,6 +86,7 @@
             document.getElementById("peso").textContent = ""
             document.getElementById("habilidades").textContent = ""
             document.getElementById("imagem").alt = "Imagem do Pokémon"
+            document.getElementById("imagem").src = ""
         }
     </script>
 </html>
